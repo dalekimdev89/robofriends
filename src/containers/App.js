@@ -12,12 +12,14 @@ class App extends Component {
             robots: [],
             searchfield: ''
         }
+        console.log('constructor1');
     }
 
     componentDidMount() {
         fetch('https://jsonplaceholder.typicode.com/users')
         .then(response => response.json())
         .then(users => this.setState({ robots: users }));
+        console.log('componentDidMount');
     }
 
     onSearchChange = (event) => {
@@ -25,10 +27,13 @@ class App extends Component {
     }
 
     render() {
+        console.log('render')
         const { robots, searchfield } = this.state;
+        // console.log('robots', robots)
         const filteredRobots = this.state.robots.filter(robot => {
             return robot.name.toLowerCase().includes(searchfield.toLowerCase())
         })
+        console.log('filteredRobots', filteredRobots);
 
         return !robots.length ? 
             <h1>Loading...</h1> :
